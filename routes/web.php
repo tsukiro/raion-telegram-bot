@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Log;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ $updates = Telegram::getWebhookUpdates();
 // Example of POST Route:
 Route::post('/telegram/webhook', function () {
     $updates = Telegram::getWebhookUpdates();
+    Log::debug("webhook",$updates);
 
     return 'ok';
 });
@@ -37,7 +39,7 @@ protected $except = [
 ];
 */
 
-Route::get('telegram/test',function(){
+Route::get('/telegram/test',function(){
     $response = Telegram::getMe();
 
     $botId = $response->getId();
