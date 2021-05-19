@@ -36,7 +36,7 @@ return [
             'username'            => 'RaionCLBot',
             'token'               => env('TELEGRAM_BOT_TOKEN', '1647309863:AAHX6FsE_gsywhrFPJ34hoV4QVVq4-mqR-E'),
           //  'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', ''),
-            'webhook_url'         => "https://raion-telegram-bot.herokuapp.com/1647309863:AAHX6FsE_gsywhrFPJ34hoV4QVVq4-mqR-E/webhook'),
+            'webhook_url'         => "https://raion-telegram-bot.herokuapp.com/1647309863:AAHX6FsE_gsywhrFPJ34hoV4QVVq4-mqR-E/webhook",
             'commands'            => [
                 App\Commands\StartCommand::class
             ],
