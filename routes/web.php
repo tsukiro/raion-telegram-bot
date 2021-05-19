@@ -20,7 +20,7 @@ Route::get('/', function () {
 $updates = Telegram::getWebhookUpdates();
 
 // Example of POST Route:
-Route::post('/<token>/webhook', function () {
+Route::post('/telegram/webhook', function () {
     $updates = Telegram::getWebhookUpdates();
 
     return 'ok';
@@ -36,3 +36,13 @@ protected $except = [
     '/<token>/webhook'
 ];
 */
+
+Route::get('telegram/test',function(){
+    $response = Telegram::getMe();
+
+    $botId = $response->getId();
+    $firstName = $response->getFirstName();
+    $username = $response->getUsername();
+    return (array($firstName,$username));
+
+});
