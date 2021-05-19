@@ -116,6 +116,7 @@ return [
     |
     */
     'commands'                     => [
+        'start'
        // Telegram\Bot\Commands\HelpCommand::class,
     ],
 
