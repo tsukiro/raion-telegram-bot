@@ -21,7 +21,7 @@ Route::get('/', function () {
 $updates = Telegram::getWebhookUpdates();
 
 // Example of POST Route:
-Route::post('/<token>/webhook', function () {
+Route::post('/webhook/<token>', function () {
     $updates = Telegram::getUpdates();
     Log::debug("webhook",json_encode($updates));
 
@@ -29,10 +29,12 @@ Route::post('/<token>/webhook', function () {
 });
 Route::post('/telegram/webhook', function () {
     $update = Telegram::commandsHandler(true);
+    $updates = Telegram::getWebhookUpdates();
 
+    return 'ok';
    /*  $updates = Telegram::getUpdates();
     Log::debug("webhook",$updates); */
-    return $update;
+    //return $update;
 });
 
 // !!IMPORTANT!!
