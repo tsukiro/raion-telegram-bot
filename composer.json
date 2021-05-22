@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "irazasyed/telegram-bot-sdk": "3.4.1",
         "laravel/framework": "6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "tsukiro/buda-sdk": "^2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

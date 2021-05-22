@@ -61,5 +61,8 @@ Route::get('/telegram/unsuscribe',function(){
     $response = Telegram::removeWebhook();
     
     echo $response;
-
+});
+Route::get('/test',function(){
+    $buda = new App\Services\Buda;
+    return $buda->getBalance();
 });
