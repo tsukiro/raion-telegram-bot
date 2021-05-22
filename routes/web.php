@@ -29,7 +29,7 @@ Route::post('/<token>/webhook', function () {
 });
 Route::get('/telegram/webhook', function () {
     $updates = Telegram::getUpdates();
-    Log::debug("webhook",json_encode($updates));
+    Log::debug("webhook",$updates);
 
     return $updates;
 });
