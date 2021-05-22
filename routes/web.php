@@ -28,10 +28,11 @@ Route::post('/<token>/webhook', function () {
     return 'ok';
 });
 Route::get('/telegram/webhook', function () {
-    $updates = Telegram::getUpdates();
-    Log::debug("webhook",$updates);
+    $update = Telegram::commandsHandler(true);
 
-    return $updates;
+   /*  $updates = Telegram::getUpdates();
+    Log::debug("webhook",$updates); */
+    return $update;
 });
 
 // !!IMPORTANT!!
