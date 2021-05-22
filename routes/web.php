@@ -21,18 +21,20 @@ Route::get('/', function () {
 $updates = Telegram::getWebhookUpdates();
 
 // Example of POST Route:
-Route::post('/<token>/webhook', function () {
+Route::post('/webhook/<token>', function () {
     $updates = Telegram::getUpdates();
     Log::debug("webhook",json_encode($updates));
 
     return 'ok';
 });
-Route::get('/telegram/webhook', function () {
+Route::post('/telegram/webhook', function () {
     $update = Telegram::commandsHandler(true);
+    $updates = Telegram::getWebhookUpdates();
 
+    return 'ok';
    /*  $updates = Telegram::getUpdates();
     Log::debug("webhook",$updates); */
-    return $update;
+    //return $update;
 });
 
 // !!IMPORTANT!!
@@ -59,5 +61,8 @@ Route::get('/telegram/unsuscribe',function(){
     $response = Telegram::removeWebhook();
     
     echo $response;
-
+});
+Route::get('/test',function(){
+    $buda = new App\Services\Buda;
+    return $buda->getBalance();
 });
