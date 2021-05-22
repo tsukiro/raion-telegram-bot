@@ -54,3 +54,9 @@ Route::get('/telegram/test',function(){
     return (array($firstName,$username));
 
 });
+Route::get('/telegram/unsuscribe',function(){
+    $response = Telegram::removeWebhook();
+    
+    echo $response;
+
+});
