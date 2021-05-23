@@ -64,5 +64,5 @@ Route::get('/telegram/unsuscribe',function(){
 });
 Route::get('/test',function(){
     $buda = new App\Services\Buda;
-    return ($buda->getTicker("btc-clp")[0]);
+    return (json_decode($buda->getTicker("btc-clp")[0]))->ticker->last_price;
 });
