@@ -20,7 +20,7 @@ class TickerCommand extends Command
     /**
      * @inheritdoc
      */
-    public function handle(Buda $buda)
+    public function handle()
     {
         // This will send a message using `sendMessage` method behind the scenes to
         // the user/chat id who triggered this command.
@@ -31,7 +31,7 @@ class TickerCommand extends Command
         // This will update the chat status to typing...
         $this->replyWithChatAction(['action' => Actions::TYPING]);
         
-        
+        $buda = new Buda();
         list($ticker,$status,$header) = $buda->getTicker("btc-clp");
         $this->replyWithMessage(['text' => 'BitCoin a CLP ']);
         $this->replyWithMessage(['text' => $ticker->last_price[0].$ticker->last_price[1]]);
