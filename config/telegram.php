@@ -38,7 +38,7 @@ return [
           //  'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', ''),
             'webhook_url'         => "https://raion-telegram-bot.herokuapp.com/telegram/webhook",
             'commands'            => [
-                App\Commands\StartCommand::class
+                App\Commands\StartCommand::class,
                 App\Commands\TickerCommand::class
             ],
         ],
