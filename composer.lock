@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00289eca09bf92d65bd1e6b4250c8499",
+    "content-hash": "9267a334463b21a58e9a2c918db0fd1e",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4334,16 +4334,16 @@
         },
         {
             "name": "tsukiro/buda-sdk",
-            "version": "2.0",
+            "version": "3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tsukiro/buda-sdk.git",
-                "reference": "0db7804000ce1c3dbe77b0895c77023a69b88bed"
+                "reference": "e735db8febd4f5a9ce64678606fc90e90919faf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tsukiro/buda-sdk/zipball/0db7804000ce1c3dbe77b0895c77023a69b88bed",
-                "reference": "0db7804000ce1c3dbe77b0895c77023a69b88bed",
+                "url": "https://api.github.com/repos/tsukiro/buda-sdk/zipball/e735db8febd4f5a9ce64678606fc90e90919faf8",
+                "reference": "e735db8febd4f5a9ce64678606fc90e90919faf8",
                 "shasum": ""
             },
             "require": {
@@ -4361,7 +4361,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Swagger\\Client\\": "lib/"
+                    "Tsukiro\\Client\\": "lib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4378,7 +4378,8 @@
                     "homepage": "https://github.com/swagger-api/swagger-codegen"
                 }
             ],
-            "homepage": "http://swagger.io",
+            "description": "Este proyecto tiene como finalidad generar un SDK en PHP para utilizar los endpoints del sitio Buda.com",
+            "homepage": "https://github.com/tsukiro/buda-sdk",
             "keywords": [
                 "api",
                 "php",
@@ -4387,9 +4388,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tsukiro/buda-sdk/issues",
-                "source": "https://github.com/tsukiro/buda-sdk/tree/2.0"
+                "source": "https://github.com/tsukiro/buda-sdk/tree/3.2"
             },
-            "time": "2021-05-22T07:40:27+00:00"
+            "time": "2021-05-23T00:05:34+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

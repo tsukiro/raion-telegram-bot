@@ -39,6 +39,7 @@ return [
             'webhook_url'         => "https://raion-telegram-bot.herokuapp.com/telegram/webhook",
             'commands'            => [
                 App\Commands\StartCommand::class
+                App\Commands\TickerCommand::class
             ],
         ],
 
