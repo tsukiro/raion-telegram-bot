@@ -32,10 +32,10 @@ class TickerCommand extends Command
         $this->replyWithChatAction(['action' => Actions::TYPING]);
         
         $buda = new Buda();
-        list($ticker,$status,$header) = $buda->getTicker("btc-clp");
+        $ticker = $buda->getTicker("btc-clp");
         $this->replyWithMessage(['text' => 'BitCoin a CLP ']);
         $this->replyWithMessage(['text' => $ticker->ticker->last_price[0].$ticker->ticker->last_price[1]]);
-        list($ticker,$status,$header) = $buda->getTicker("eth-clp");
+        $ticker = $buda->getTicker("eth-clp");
         $this->replyWithMessage(['text' => 'Etherium a CLP ']);
         $this->replyWithMessage(['text' => $ticker->ticker->last_price[0].$ticker->ticker->last_price[1]]);
     }
