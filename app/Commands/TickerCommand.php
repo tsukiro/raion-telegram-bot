@@ -5,7 +5,7 @@ namespace App\Commands;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use App\Services\Buda;
-class StartCommand extends Command
+class TickerCommand extends Command
 {
     /**
      * @var string Command Name
