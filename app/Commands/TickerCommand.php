@@ -34,7 +34,7 @@ class TickerCommand extends Command
         $buda = new Buda();
         $ticker = $buda->getTicker("btc-clp");
         $this->replyWithMessage(['text' => 'BitCoin a CLP ']);
-        $this->replyWithMessage(['text' => $ticker->value."CLP");
+        $this->replyWithMessage(['text' => $ticker->value."CLP"]);
         $ticker = $buda->getTicker("eth-clp");
         $this->replyWithMessage(['text' => 'Etherium a CLP ']);
         $this->replyWithMessage(['text' => $ticker->value."CLP"]);
