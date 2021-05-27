@@ -34,13 +34,12 @@ return [
     'bots'                         => [
         'mybot' => [
             'username'            => 'RaionCLBot',
-            'token'               => env('TELEGRAM_BOT_TOKEN', '1647309863:AAHX6FsE_gsywhrFPJ34hoV4QVVq4-mqR-E'),
-          //  'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', ''),
-            'webhook_url'         => "https://raion-telegram-bot.herokuapp.com/telegram/webhook",
+            'token'               => env('TELEGRAM_BOT_TOKEN', 'YOUR-BOT-TOKEN'),
+            'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
+            'webhook_url'         => env('TELEGRAM_WEBHOOK_URL', 'YOUR-BOT-WEBHOOK-URL'),
             'commands'            => [
                 App\Commands\StartCommand::class,
-                App\Commands\TickerCommand::class
-            ],
+                App\Commands\TickerCommand::class            ],
         ],
 
         //        'mySecondBot' => [
@@ -117,8 +116,7 @@ return [
     |
     */
     'commands'                     => [
-        
-       // Telegram\Bot\Commands\HelpCommand::class,
+        //Telegram\Bot\Commands\HelpCommand::class,
     ],
 
     /*
@@ -199,7 +197,7 @@ return [
     |
     */
     'shared_commands'              => [
-         //'start' => Acme\Project\Commands\StartCommand::class,
+        // 'start' => Acme\Project\Commands\StartCommand::class,
         // 'stop' => Acme\Project\Commands\StopCommand::class,
         // 'status' => Acme\Project\Commands\StatusCommand::class,
     ],
