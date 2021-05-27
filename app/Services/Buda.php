@@ -6,6 +6,8 @@ use Tsukiro\Client\Api\BudaApi;
 use GuzzleHttp\Client;
 use Tsukiro\Client\Configuration;
 use App\TickerHistory;
+use Illuminate\Support\Facades\Log;
+
 class Buda {
 
     private $instance;
@@ -25,11 +27,20 @@ class Buda {
         return $this->instance->getBalances()[0];
     }
     public function getTicker($market_id){
-        $budaTicker = $this->instance->getTicker($market_id)[0];
-        $ticker = new TickerHistory();
-        $ticker->value = $budaTicker->ticker->last_price[0];
-        $ticker->currency_code = $market_id;
-        $ticker->save();
-        return $ticker;
+        try {
+            //code...
+            $budaTicker = $this->instance->getTicker($market_id)[0];
+            $ticker = new TickerHistory();
+            $ticker->value = $budaTicker->ticker->last_price[0];
+            $ticker->currency_code = $market_id;
+            $ticker->save();
+            return $ticker;
+        } catch (\Throwable $th) {
+            //throw $th;
+            Log::error("Error en ticker");
+            Log::error($th);
+
+        }
     }
+
 }
