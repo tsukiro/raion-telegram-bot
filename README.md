@@ -90,9 +90,9 @@
 
 ### Built With
 
-* []()
-* []()
-* []()
+* [Laravel](https://laravel.com/)
+* [TelegramBot SDK](https://telegram-bot-sdk.readme.io/docs)
+* [Heroku](https://dashboard.heroku.com/apps)
 
 
 
