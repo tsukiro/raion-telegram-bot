@@ -16,14 +16,19 @@ class Buda {
         $this->secret = '8SrDMf5W4/Vn9zMJ/Zu/1Hwof0V08LT8fr0cbfVW';
     }
     public function getMarkets(){
-        return json_decode($this->instance->getMarkets()[0]);
+        return $this->instance->getMarkets()[0];
     }
     public function getBalance(){
         $this->instance->setApiKey($this->apikey);
         $this->instance->setSecret($this->secret);
-        return json_decode($this->instance->getBalances()[0]);
+        return $this->instance->getBalances()[0];
     }
     public function getTicker($market_id){
-        return json_decode($this->instance->getTicker($market_id)[0]);
+        $budaTicker = $this->instance->getTicker($market_id)[0];
+        $ticker = new TickerHistory();
+        $ticker->value = $budaTicker->ticker->last_price[0];
+        $ticker->currency_code = $market_id;
+        $ticker->save();
+        return $ticker;
     }
 }
