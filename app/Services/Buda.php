@@ -5,6 +5,7 @@ namespace App\Services;
 use Tsukiro\Client\Api\BudaApi;
 use GuzzleHttp\Client;
 use Tsukiro\Client\Configuration;
+use App\TickerHistory;
 class Buda {
 
     private $instance;
