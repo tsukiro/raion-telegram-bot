@@ -38,6 +38,11 @@ class SendCurrencyNotification extends Command
      */
     public function handle(Notifications $notifications)
     {
-        $notifications->sendCurrencyNotification();
+        if (env("ENABLE_CURRENCY_NOTIFICATIONS","")){
+            $notifications->sendCurrencyNotification();
+        }else{
+            $this->error('Debes habilitar el item ENABLE_CURRENCY_NOTIFICATIONS en tu configuración de environment para ejecutar este comando');
+
+        }
     }
 }

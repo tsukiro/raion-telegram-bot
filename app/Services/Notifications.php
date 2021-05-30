@@ -21,8 +21,8 @@ class Notifications  {
             $chart = $buda->generateChartUrl($currency->currency_code);
             foreach ($subscriptions as $subscription){
     
-                Telegram::sendMessage(['text' => 'Rescatando los datos de Buda.com:']);
-                Telegram::sendChatAction(['action' => Actions::TYPING]);
+                Telegram::sendMessage(["chat_id" => $subscription->chat_id,'text' => 'Rescatando los datos de Buda.com:']);
+                Telegram::sendChatAction(["chat_id" => $subscription->chat_id,'action' => Actions::TYPING]);
                 Telegram::sendMessage([ "chat_id" => $subscription->chat_id, 'text' => $currency->description]);
                 Telegram::sendMessage([ "chat_id" => $subscription->chat_id, 'text' => $ticker->value."CLP"]);
                 Telegram::sendChatAction([ "chat_id" => $subscription->chat_id, 'action' => Actions::UPLOAD_PHOTO]);
