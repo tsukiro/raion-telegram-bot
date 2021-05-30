@@ -71,7 +71,7 @@ class Buda {
                 ]
             ]
         ];
-        return json_encode($chartConfig);
+        return urlencode(json_encode($chartConfig));
     }
 
 }
