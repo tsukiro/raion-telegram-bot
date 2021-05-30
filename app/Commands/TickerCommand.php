@@ -33,11 +33,11 @@ class TickerCommand extends Command
         foreach ($currencies as $currency){
 
             $ticker = $buda->getTicker($currency->code);
-            $chart{$currency->code} = $buda->generateChartUrl($currency->code);
+            $chart = $buda->generateChartUrl($currency->code);
             $this->replyWithMessage(['text' => $currency->description]);
             $this->replyWithMessage(['text' => $ticker->value."CLP"]);
             $this->replyWithChatAction(['action' => Actions::TYPING]);
-            $this->replyWithMessage(["text" => $chart{$currency->code}]);
+            $this->replyWithMessage(["text" => "<a href='$chart'>Chart</a>", "parsemode"=> "html"]);
         }
     }
 }
