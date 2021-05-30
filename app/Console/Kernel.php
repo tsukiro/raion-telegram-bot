@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,12 +25,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        if (env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","false") === "true"){
+        Log::info("ENABLE_CURRENCY_NOTIFICATIONS_DAILY :". env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","false"));
+        Log::info("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES :". env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","false"));
+
+        if (env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","")){
             $schedule->command('notify:currency')->dailyAt("09:00");
             $schedule->command('notify:currency')->dailyAt("18:00");
         }
-        if (env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","false") === "true"){
-            $schedule->command('notify:currency')->everyTenMinutes();	;
+        if (env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","")){
+            $schedule->command('notify:currency')->everyTenMinutes();	
         }
         //          ->hourly();
     }
