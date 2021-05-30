@@ -37,7 +37,7 @@ class TickerCommand extends Command
             $this->replyWithMessage(['text' => $currency->description]);
             $this->replyWithMessage(['text' => $ticker->value."CLP"]);
             $this->replyWithChatAction(['action' => Actions::TYPING]);
-            $this->replyWithMessage(["text" => "<a href='$chart'>Chart</a>", "parsemode"=> "HTML"]);
+            $this->replyWithMessage(["text" => '<a href="'.$chart.'">Chart</a>', "parsemode"=> "HTML"]);
         }
     }
 }
