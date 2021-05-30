@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5562ce213358dcc7702c6c79dcc2613",
+    "content-hash": "4569dca0de37767f8d59fb0e9202074d",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -608,6 +608,55 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
             "time": "2021-04-26T09:17:50+00:00"
+        },
+        {
+            "name": "ianw/quickchart",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/typpo/quickchart-php.git",
+                "reference": "d39a180627005d56ff7e496b2ed968ff10cdeb9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/typpo/quickchart-php/zipball/d39a180627005d56ff7e496b2ed968ff10cdeb9d",
+                "reference": "d39a180627005d56ff7e496b2ed968ff10cdeb9d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Webster",
+                    "homepage": "https://quickchart.io/"
+                }
+            ],
+            "description": "QuickChart chart API",
+            "homepage": "http://github.com/typpo/quickchart-php",
+            "keywords": [
+                "bar-chart",
+                "chart",
+                "chart-api",
+                "charts",
+                "image",
+                "line-chart"
+            ],
+            "support": {
+                "issues": "https://github.com/typpo/quickchart-php/issues",
+                "source": "https://github.com/typpo/quickchart-php/tree/v1.1.1"
+            },
+            "time": "2021-03-05T16:52:56+00:00"
         },
         {
             "name": "irazasyed/telegram-bot-sdk",

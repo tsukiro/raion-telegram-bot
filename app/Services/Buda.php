@@ -7,19 +7,18 @@ use GuzzleHttp\Client;
 use Tsukiro\Client\Configuration;
 use App\TickerHistory;
 use Illuminate\Support\Facades\Log;
+use QuickChart;
 
 class Buda {
 
     private $instance;
     private $apikey;
     private $secret;
-    private $graphUrl;
     private $lastSavedPrices;
     public function __construct(){
         $this->instance = new BudaApi(new Client(['verify' => false ]));
         $this->apikey = 'e186650494b44921e23adf1c5a7f634b';
         $this->secret = '8SrDMf5W4/Vn9zMJ/Zu/1Hwof0V08LT8fr0cbfVW';
-        $this->graphUrl = env("BUDA_GRAPH_URL","https://quickchart.io/chart?c=");
         $this->lastSavedPrices = env("BUDA_LAST_SAVED_PRICES",5);
     }
     public function getMarkets(){
@@ -45,7 +44,12 @@ class Buda {
     }
 
     public function generateChartUrl($currency_code){
-        return $this->graphUrl.$this->generateChartConfig($currency_code);
+        $qc = new QuickChart(array(
+            'width'=> 600,
+            'height'=> 300,
+        ));
+        $qc->setConfig($this->generateChartConfig($currency_code));
+        return $qc->getShortUrl();
     }
     private function getLastPrices($currency_code){
         return TickerHistory::where("currency_code",$currency_code)->orderBy('created_at', 'desc')->take($this->lastSavedPrices)->get();
@@ -60,7 +64,7 @@ class Buda {
         }
 
         $chartConfig = [
-            "type" => 'bar',
+            "type" => 'line',
             "data" => [
                 "labels" => $labels,
                 "datasets" => [
@@ -71,7 +75,7 @@ class Buda {
                 ]
             ]
         ];
-        return urlencode(json_encode($chartConfig));
+        return json_encode($chartConfig);
     }
 
 }
