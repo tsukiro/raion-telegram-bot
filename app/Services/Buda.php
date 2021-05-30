@@ -52,7 +52,8 @@ class Buda {
     }
     private function generateChartConfig($currency_code){
         $lastPrices = $this->getLastPrices($currency_code);
-
+        $labels = array();
+        $dataset = array();
         foreach($lastPrices as $lastPrice){
             $labels[] = $lastPrice->created_at->format("d-m-Y H:i");
             $dataset[] = $lastPrice->value;
