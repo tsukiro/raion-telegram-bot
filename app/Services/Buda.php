@@ -13,10 +13,14 @@ class Buda {
     private $instance;
     private $apikey;
     private $secret;
+    private $graphUrl;
+    private $lastSavedPrices;
     public function __construct(){
         $this->instance = new BudaApi(new Client(['verify' => false ]));
         $this->apikey = 'e186650494b44921e23adf1c5a7f634b';
         $this->secret = '8SrDMf5W4/Vn9zMJ/Zu/1Hwof0V08LT8fr0cbfVW';
+        $this->graphUrl = env("BUDA_GRAPH_URL","https://quickchart.io/chart?c=");
+        $this->lastSavedPrices = env("BUDA_LAST_SAVED_PRICES",5);
     }
     public function getMarkets(){
         return $this->instance->getMarkets()[0];
@@ -28,7 +32,6 @@ class Buda {
     }
     public function getTicker($market_id){
         try {
-            //code...
             $budaTicker = $this->instance->getTicker($market_id)[0];
             $ticker = new TickerHistory();
             $ticker->value = $budaTicker->ticker->last_price[0];
@@ -36,11 +39,38 @@ class Buda {
             $ticker->save();
             return $ticker;
         } catch (\Throwable $th) {
-            //throw $th;
             Log::error("Error en ticker");
             Log::error($th);
-
         }
+    }
+
+    public function generateChartUrl($currency_code){
+        return $this->graphUrl.$this->generateChartConfig($currency_code);
+    }
+    private function getLastPrices($currency_code){
+        return TickerHistory::where("currency_code",$currency_code)->orderBy('created_at', 'desc')->take($this->lastSavedPrices)->get();
+    }
+    private function generateChartConfig($currency_code){
+        $lastPrices = $this->getLastPrices($currency_code);
+
+        foreach($lastPrices as $lastPrice){
+            $labels[] = $lastPrice->created_at->format("d-m-Y H:i");
+            $dataset[] = $lastPrice->value;
+        }
+
+        $chartConfig = [
+            "type" => 'bar',
+            "data" => [
+                "labels" => $labels,
+                "datasets" => [
+                    [
+                        "label" =>$currency_code,
+                        "data"  => $dataset 
+                    ]
+                ]
+            ]
+        ];
+        return json_encode($chartConfig);
     }
 
 }
