@@ -24,7 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
+        if (env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","false") === "true"){
+            $schedule->command('notify:currency')->dailyAt("09:00");
+            $schedule->command('notify:currency')->dailyAt("18:00");
+        }
+        if (env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","false") === "true"){
+            $schedule->command('notify:currency')->everyTenMinutes();	;
+        }
         //          ->hourly();
     }
 
