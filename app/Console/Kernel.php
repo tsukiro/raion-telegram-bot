@@ -27,13 +27,19 @@ class Kernel extends ConsoleKernel
     {
         Log::info("ENABLE_CURRENCY_NOTIFICATIONS_DAILY :". env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","false"));
         Log::info("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES :". env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","false"));
-
-        if (env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","")){
-            $schedule->command('notify:currency')->dailyAt("09:00");
-            $schedule->command('notify:currency')->dailyAt("18:00");
-        }
-        if (env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","")){
-            $schedule->command('notify:currency')->everyTenMinutes();	
+        try {
+            //code...
+            if (env("ENABLE_CURRENCY_NOTIFICATIONS_DAILY","")){
+                $schedule->command('notify:currency')->dailyAt("09:00");
+                $schedule->command('notify:currency')->dailyAt("18:00");
+            }
+            if (env("ENABLE_CURRENCY_NOTIFICATIONS_TEN_MINUTES","")){
+                $schedule->command('notify:currency')->everyTenMinutes();	
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            Log::error("Hubo un problema al ejecutar los comandos de cron");
+            Log::error($th);
         }
         //          ->hourly();
     }
