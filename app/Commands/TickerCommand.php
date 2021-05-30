@@ -36,7 +36,7 @@ class TickerCommand extends Command
             $this->replyWithMessage(['text' => $currency->description]);
             $this->replyWithMessage(['text' => $ticker->value."CLP"]);
             $this->replyWithChatAction(['action' => Actions::UPLOAD_PHOTO]);
-            $this->replyWithPhoto(["photo" => $chart, "caption"=> "Chart of last currencies"]);
+            $this->replyWithMessage(["text" => $chart]);
         }
     }
 }
