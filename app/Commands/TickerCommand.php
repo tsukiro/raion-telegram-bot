@@ -5,6 +5,7 @@ namespace App\Commands;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use App\Services\Buda;
+use App\Currency;
 class TickerCommand extends Command
 {
     /**
@@ -22,21 +23,21 @@ class TickerCommand extends Command
      */
     public function handle()
     {
-        // This will send a message using `sendMessage` method behind the scenes to
-        // the user/chat id who triggered this command.
-        // `replyWith<Message|Photo|Audio|Video|Voice|Document|Sticker|Location|ChatAction>()` all the available methods are dynamically
-        // handled when you replace `send<Method>` with `replyWith` and use the same parameters - except chat_id does NOT need to be included in the array.
         $this->replyWithMessage(['text' => 'Rescatando los datos de Buda.com:']);
-        
-        // This will update the chat status to typing...
         $this->replyWithChatAction(['action' => Actions::TYPING]);
+
+        $currencies = Currency::all();
         
         $buda = new Buda();
-        $ticker = $buda->getTicker("btc-clp");
-        $this->replyWithMessage(['text' => 'BitCoin a CLP ']);
-        $this->replyWithMessage(['text' => $ticker->value."CLP"]);
-        $ticker = $buda->getTicker("eth-clp");
-        $this->replyWithMessage(['text' => 'Etherium a CLP ']);
-        $this->replyWithMessage(['text' => $ticker->value."CLP"]);
+
+        foreach ($currencies as $currency){
+
+            $ticker = $buda->getTicker($currency->code);
+            $chart{$currency->code} = $buda->generateChartUrl($currency->code);
+            $this->replyWithMessage(['text' => $currency->description]);
+            $this->replyWithMessage(['text' => $ticker->value."CLP"]);
+            $this->replyWithChatAction(['action' => Actions::TYPING]);
+            $this->replyWithMessage(["text" => $chart{$currency->code}]);
+        }
     }
 }
