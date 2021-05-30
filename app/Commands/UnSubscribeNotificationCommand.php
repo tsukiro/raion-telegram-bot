@@ -29,7 +29,7 @@ class UnSubscribeNotificationCommand extends Command
         $chat_id = $this->getUpdate()->getMessage()->getFrom()->getId();
         $subscription = Subscription::where("chat_id",$chat_id)->first();
         if ($subscription){
-            $subscription->remove();
+            $subscription->delete();
             $this->replyWithMessage(['text' => "Hemos removido tu chat al sistema de notificaciones, recuerda que si deseas subscribir tu chat puedes utilizar el comando /subscribemetonotifications "]);
         }else{
             $this->replyWithMessage(['text' => "Ya no estás subscrito a las notificaciones, si deseas subscribir tu chat nuevamente utiliza el comando /subscribemetonotifications "]);
