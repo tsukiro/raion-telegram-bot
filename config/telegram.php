@@ -38,8 +38,12 @@ return [
             'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
             'webhook_url'         => env('TELEGRAM_WEBHOOK_URL', 'YOUR-BOT-WEBHOOK-URL'),
             'commands'            => [
+                Telegram\Bot\Commands\HelpCommand::class,
                 App\Commands\StartCommand::class,
-                App\Commands\TickerCommand::class            ],
+                App\Commands\TickerCommand::class,
+                App\Commands\SubscribeNotificationCommand::class,
+                App\Commands\UnSubscribeNotificationCommand::class,
+            ],
         ],
 
         //        'mySecondBot' => [
