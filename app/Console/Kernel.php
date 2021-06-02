@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
             //code...
             $schedule->command('notify:currency')->dailyAt("09:00");
             $schedule->command('notify:currency')->dailyAt("18:00");
+            $schedule->command('notify:currency')->everyMinute();
         } catch (\Throwable $th) {
             //throw $th;
             Log::error("Hubo un problema al ejecutar los comandos de cron");
