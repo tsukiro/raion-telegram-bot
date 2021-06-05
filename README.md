@@ -27,7 +27,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
+[![Laravel](https://github.com/tsukiro/raion-telegram-bot/actions/workflows/laravel.yml/badge.svg?branch=main)](https://github.com/tsukiro/raion-telegram-bot/actions/workflows/laravel.yml)
 
 
 <!-- PROJECT LOGO -->
