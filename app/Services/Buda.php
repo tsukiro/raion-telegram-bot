@@ -52,7 +52,10 @@ class Buda {
         return $qc->getShortUrl();
     }
     private function getLastPrices($currency_code){
-        return TickerHistory::where("currency_code",$currency_code)->orderBy('created_at', 'desc')->take($this->lastSavedPrices)->get();
+        return TickerHistory::where("currency_code",$currency_code)->orderBy('created_at', 'desc')->take($this->lastSavedPrices)->get()->groupBy(function($date) {
+            //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('d'); // grouping by months;
+        });
     }
     private function generateChartConfig($currency_code){
         $lastPrices = $this->getLastPrices($currency_code);
