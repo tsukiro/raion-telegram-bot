@@ -8,7 +8,7 @@ use Tsukiro\Client\Configuration;
 use App\TickerHistory;
 use Illuminate\Support\Facades\Log;
 use QuickChart;
-
+use Carbon\Carbon;
 class Buda {
 
     private $instance;
@@ -54,16 +54,18 @@ class Buda {
     private function getLastPrices($currency_code){
         return TickerHistory::where("currency_code",$currency_code)->orderBy('created_at', 'desc')->take($this->lastSavedPrices)->get()->groupBy(function($date) {
             //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
-            return Carbon::parse($date->created_at)->format('d'); // grouping by months;
+           // echo json_encode($date); die;
+            return Carbon::parse($date->created_at)->format('d-m-Y'); // grouping by months;
         });
     }
     private function generateChartConfig($currency_code){
         $lastPrices = $this->getLastPrices($currency_code);
         $labels = array();
         $dataset = array();
-        foreach($lastPrices as $lastPrice){
-            $labels[] = $lastPrice->created_at->format("d-m-Y H:i");
-            $dataset[] = $lastPrice->value;
+        
+        foreach($lastPrices as $dateGroup => $dayResult){
+            $labels[] = $dateGroup;
+            $dataset[] = $dayResult[count($dayResult)-1]->value;
         }
 
         $chartConfig = [
