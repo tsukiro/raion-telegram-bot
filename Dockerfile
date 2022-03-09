@@ -34,8 +34,8 @@ RUN apt-get update > /dev/null && curl https://packages.microsoft.com/keys/micro
 RUN curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list 
 RUN apt-get install -y --no-install-recommends locales apt-transport-https > /dev/null 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen > /dev/null 
-RUN apt-get update > /dev/null
-RUN apt-get -y --no-install-recommends install unixodbc-dev msodbcsql17 > /dev/null
+RUN apt-get update
+RUN apt-get -y --no-install-recommends install unixodbc-dev msodbcsql17
 
 
 # Install PHP extensions
