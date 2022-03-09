@@ -114,3 +114,5 @@ WORKDIR /app
 RUN mkdir -p /app
 COPY . /app
 RUN cp .env.example .env
+CMD php artisan serve --host=0.0.0.0 --port=8000
+EXPOSE 8000
