@@ -35,7 +35,7 @@ RUN curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sou
 RUN apt-get install -y --no-install-recommends locales apt-transport-https > /dev/null 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen > /dev/null 
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends unixodbc-dev 
+#RUN apt-get install -y --no-install-recommends unixodbc-dev 
 RUN apt-get install -y --no-install-recommends msodbcsql17
 
 
