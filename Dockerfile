@@ -29,10 +29,13 @@ RUN apt-get update > /dev/null && \
     > /dev/null
 
 # Microsoft SQL Server Prerequisites
-RUN if [ "$MSSQL" = "true" ]; then apt-get update > /dev/null && apt-get install -y --no-install-recommends gnupg2 > /dev/null && apt-get update > /dev/null && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list && apt-get install -y --no-install-recommends locales apt-transport-https > /dev/null && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen > /dev/null && apt-get update > /dev/null && apt-get -y --no-install-recommends install unixodbc-dev msodbcsql17 > /dev/null; fi
+RUN apt-get update > /dev/null && apt-get install -y --no-install-recommends gnupg2 > /dev/null 
+RUN apt-get update > /dev/null && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - 
+RUN curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list 
+RUN apt-get install -y --no-install-recommends locales apt-transport-https > /dev/null 
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen > /dev/null 
+RUN apt-get update > /dev/null && apt-get -y --no-install-recommends install unixodbc-dev msodbcsql17 > /dev/null
 
-# Install Imagick
-RUN if [ "$IMAGICK" = "true" ]; then pecl install imagick > /dev/null || echo "^"; fi
 
 # Install PHP extensions
 RUN docker-php-ext-install \
@@ -49,21 +52,15 @@ RUN docker-php-ext-install \
     calendar \
     > /dev/null
 
-# Install Imagick
-RUN if [ "$MYSQLI" = "true" ]; then docker-php-ext-install mysqli > /dev/null || echo "^"; fi
 
 # Set PHP ini vars
 #COPY php/custom.ini /usr/local/etc/php/conf.d/custom.ini
     
 # Install & enable Microsoft SQL Server
-RUN if [ "$MSSQL" = "true" ]; then \ 
-    docker-php-ext-install pdo pdo_mysql > /dev/null \
-    && pecl install sqlsrv pdo_sqlsrv > /dev/null \
-    && docker-php-ext-enable sqlsrv pdo_sqlsrv > /dev/null \
-    ; fi
+RUN docker-php-ext-install pdo pdo_mysql > /dev/null
+RUN pecl install sqlsrv pdo_sqlsrv > /dev/null
+RUN docker-php-ext-enable sqlsrv pdo_sqlsrv > /dev/null
 
-# Enable Imagick
-RUN if [ "$IMAGICK" = "true" ]; then docker-php-ext-enable imagick > /dev/null ; fi
 
 # Get latest Composer
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer > /dev/null
