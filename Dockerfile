@@ -28,7 +28,7 @@ RUN apt-get update > /dev/null && \
     xfonts-base \
     apt-transport-https \
     > /dev/null
-
+RUN hwclock -s
 # Microsoft SQL Server Prerequisites
 RUN apt-get update > /dev/null && apt-get install -y --no-install-recommends gnupg2 > /dev/null 
 RUN apt-get update > /dev/null && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - 
